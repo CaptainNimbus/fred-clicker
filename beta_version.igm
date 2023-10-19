@@ -1,0 +1,334 @@
+Let's make a game!
+    name:Fred - BETA VERSION
+    by:CaptainNimbus
+    desc:Click Fred. Go to <i><b>https://orteil.dashnet.org/igm/?g=zFfKahJE</b></i> for the main version.
+    version:1.1
+
+
+Settings
+    building cost increase:115%
+    building cost refund:75%
+    background:https://i.ibb.co/jHTRL0B/image.png
+
+CSS
+    #game
+    {
+        color:#eeeeee;
+        font-family:"Verdana",sans-serif;
+    }
+    .thing,.box-header,.box-footer,.box-bit,.thing[data-hammerhead-hovered],.thing.lit,.upgrade.owned,.achiev.owned
+	{
+	background:#649a9a;
+	}
+
+
+Layout
+    *main
+        contains:res, buttons
+        *res
+            contains:Resources
+        *buttons
+            contains:Buttons
+    *store
+        contains:buildings, upgrades
+        *buildings
+            contains:Buildings
+            header:<b>Buildings</b>
+            tooltip origin:left
+        *upgrades
+            contains:Upgrades, achievs
+            header:<b>Upgrades</b>
+            costs:hide
+            names:hide
+            *achievs
+                header:<b>Achievements</b>
+                contains:Achievements
+
+
+Includes
+Buttons
+	*fredButton
+  		name:Fred
+  		on click:yield 1 fred
+        on click:if (chance(0.05%)) yield 1 peanutButter
+        on click:if (chance(0.05%)) yield 1 donut
+        on click:if (chance(0.05%)) yield 1 goldfish
+	    icon:https://i.ibb.co/vL1wnQ9/bigfred.png
+        no text
+        class:bigButton
+        no tooltip
+
+
+Resources
+    *fred|freds
+        name:Fred|Freds
+        icon:https://i.ibb.co/x3Vw9JR/fred.png
+    *fredFeedCounter
+        always hidden
+    *sickTimer
+        text:Fred is sick! He will be sick for [(sickTimer/60)] [?(sickTimer/60=1)|minute|minutes] and [(sickTimer%60)] [?(sickTimer%60=1)|second|seconds].
+        on tick:lose 1 this
+        passive:if (sickTimer!=0) multiply yield of :Buildings by 0.5
+        hidden when 0
+    *donutTimer
+        text:Fred has been fed a donut! Buildings are half price for [donutTimer] [?(donutTimer=1)|second|seconds].
+        on tick:lose 1 this
+        passive:if (donutTimer!=0) multiply cost of :Buildings by 0.5
+        hidden when 0
+    *goldfishTimer
+        text:Fred has been fed a goldfish! Golden Fred chance doubled for [(goldfishTimer/60)] [?(goldfishTimer/60=1)|minute|minutes] and [(goldfishTimer%60)] [?(goldfishTimer%60=1)|second|seconds].
+        on tick:lose 1 this
+        hidden when 0
+    *fishTimer
+        text:Fred has been fed a fish! Freds per second boosted by 10% for [(fishTimer/60)] [?(fishTimer/60=1)|minute|minutes] and [(fishTimer%60)] [?(fishTimer%60=1)|second|seconds].
+        on tick:lose 1 this
+        passive:if (fishTimer!=0) multiply yield of :Buildings by 1.1
+        hidden when 0
+    *magicSeaweedTimer
+        name:Magical Seaweed
+        hidden when 0
+Buildings
+    *reallyBigAquarium|reallyBigAquariums
+        name:Really Big Aquarium
+        desc:Provides a safe home for Freds to live.</>Produces 0.8 Freds per second.
+        icon:https://i.ibb.co/f2Y1dnj/aquarium.png
+        on tick:
+            yield 0.8 freds
+            if (chance(0.05%)) yield 1 fish
+        end
+        cost:25 freds
+    *artist|artists
+        name:Artist
+        desc:Hires an artist to draw Freds.</>Draws 3 Freds per second.
+        icon:https://i.ibb.co/k08BcwK/artist.png
+        on tick:
+            yield 3 freds
+            if (chance(0.04%)) yield 1 palette
+        end
+        cost:150 freds
+    *scubaDiver|scubaDivers
+        name:Scuba Diver
+        desc:Hires a scuba diver to explore the depths of the ocean for Freds.</>Discovers 24 Freds per second.
+        icon:https://i.ibb.co/SsvSLwV/scuba.png
+        on tick:yield 24 freds
+        cost:2100 freds
+    *photographer|photographers
+        name:Photographer
+        desc:Takes pictures of Freds in the wild.</>Photographs 75 Freds per second.
+        icon:https://i.ibb.co/g7DZzGr/camera.png
+        on tick:yield 75 freds
+        cost:10000 freds
+    *fredCloner3000|fredCloner3000s
+        name:Fred Cloner 3000™
+        desc:Clones Freds from other Freds.</>Clones 350 Freds per second.
+        icon:https://i.ibb.co/VCqmSKs/fredcloner3000.png
+        on tick:yield 350 freds
+        cost:200000 freds
+    *deadFredReviver
+        name:Dead Fred Reviver
+        desc:Revives dead Freds using DNA from living ones.</>Revives 1000 Freds per second.
+        icon:https://i.ibb.co/3vCLZgp/fredreviver.png
+        on tick:yield 1000 freds
+        cost:850000 freds
+    *whalepedia|whalepedias
+        name:Whalepedia
+        desc:Converts visits to Wikipedia into Freds.</>Converts 2951 Freds per second (as that is the average visits per second on Wikipedia).
+        icon:https://i.ibb.co/5YSt62J/whalepedia.png
+        on tick:
+            yield 2951 freds
+            if (chance(0.1%)) yield 1 homework
+        end
+        cost:2500000 freds
+    *fredWizard
+        name:Fred Wizard
+        desc:Summons Freds from the depths of the void.</>Summons 10000 Freds per second.
+        icon:https://i.ibb.co/sW23pqR/fredwizard.png
+        on tick:
+            yield 10000 freds
+            if (chance(0.1%)) yield 1 magicSeaweed
+        end
+        cost:9000000 freds
+    *foodHeading
+        text:<b>Food:</b>
+        no tooltip
+        no buy
+    *peanutButter
+        name:Peanut Butter
+        text:Peanut Butter: [peanutButter]</><b>Click to feed to Fred!</b>
+        desc:A nice big jar of peanut butter. You have [peanutButter] [?(peanutButter=1)|jar|jars] of peanut butter.
+        icon:https://i.ibb.co/17hrZJx/peanutbutter.png
+        no buy
+        on click:
+            if (peanutButter>0 and sickTimer=0)
+                sickTimer is 600
+                yield 1 fredFeedCounter
+                toast Fred is allergic to peanut butter and is sick. Fred production halved for the next 10 minutes.
+                lose 1 peanutButter
+            else if (peanutButter>0 and sickTimer>0)
+                toast Fred is still recovering. You cannot feed him until he is well again.
+            else if (peanutButter=0)
+                toast You do not have any peanut butter to feed Fred.
+            end
+        end
+    *donut
+        name:Donuts
+        text:Donuts: [donut]</><b>Click to feed to Fred!</b>
+        desc:A yummy chocolate sprinkle donut for Fred to eat. You have [donut] [?(donut=1)|donut|donuts].
+        icon:https://i.ibb.co/HHFrwRW/donut.png
+        no buy
+        on click:
+            if (donut>0 and sickTimer>0)
+                toast Fred is still recovering. You cannot feed him until he is well again.
+            else if (donut>0 and sickTimer=0)
+                donutTimer is 50
+                yield 1 fredFeedCounter
+                toast Fred has been fed a donut. Building prices halved for the next 50 seconds.
+                lose 1 donut
+            else if (donut=0)
+                toast You do not have any donuts to feed Fred.
+            end
+        end
+    *goldfish
+        name:Goldfish
+        text:Goldfish: [goldfish]</><b>Click to feed to Fred!</b>
+        desc:A yummy, cheesy, crispy fish for Fred to eat. You have [goldfish] goldfish.
+        icon:https://i.ibb.co/Xt2mpNF/goldfish.png
+        no buy
+        on click:
+            if (goldfish>0 and sickTimer>0)
+                toast Fred is still recovering. You cannot feed him until he is well again.
+            else if (goldfish>0 and sickTimer=0)
+                goldfishTimer is 50
+                yield 1 fredFeedCounter
+                toast Fred has been fed a goldfish. Golden Fred chance doubled for the next 7 minutes.
+                lose 1 goldfish
+            else if (goldfish=0)
+                toast You do not have any goldfish to feed Fred.
+            end
+        end
+    *fish
+        name:Fish
+        text:Fish: [fish]</><b>Click to feed to Fred!</b>
+        desc:A light meal for Fred. You have [fish] fish.
+        icon:https://i.ibb.co/BT9yC39/fish.png
+        no buy
+        on click:
+            if (fish>0 and sickTimer>0)
+                toast Fred is still recovering. You cannot feed him until he is well again.
+            else if (fish>0 and sickTimer=0)
+                fishTimer is 1200
+                yield 1 fredFeedCounter
+                toast Fred has been fed a fish. Freds per second x1.1 for the next 20 minutes.
+                lose 1 fish
+            else if (fish=0)
+                toast You do not have any fish to feed Fred.
+            end
+        end
+    *palette
+        name:Artist's Palettes
+        text:Artist's Palettes: [palette]</><b>Click to feed to Fred!</b>
+        desc:A wooden artist's palette that holds paint. Not usually considered edible. You have [palette] artist's [?(palette=1)|palette|palettes].
+        icon:https://i.ibb.co/k08BcwK/artist.png
+        no buy
+        on click:
+            if (palette>0 and sickTimer>0)
+                toast Fred is still recovering. You cannot feed him until he is well again.
+            else if (palette>0 and sickTimer=0)
+                yield 1 fredFeedCounter
+                toast Fred has been fed an artist's palette.
+                lose 1 palette
+                yield palettePalate
+            else if (palette=0)
+                toast You do not have any artist's palettes to feed Fred.
+            end
+        end
+    *homework
+        name:Homework
+        text:Homework: [homework]</><b>Click to feed to Fred!</b>
+        desc:A piece of homework. You have [homework] [?(homework=1)|piece|pieces] of homework.
+        icon:https://i.ibb.co/4ZVSkHD/homework.png
+        no buy
+        on click:
+            if (homework>0 and sickTimer>0)
+                toast Fred is still recovering. You cannot feed him until he is well again.
+            else if (homework>0 and sickTimer=0)
+                yield 1 fredFeedCounter
+                toast Fred has been fed a piece of homework.
+                lose 1 homework
+                yield fredAteMyHomework
+            else if (homework=0)
+                toast You do not have any homework to feed Fred.
+            end
+        end
+    *magicSeaweed
+        name:Magical Seaweed
+        text:Magical Seaweed: [magicSeaweed]</><b>Click to feed to Fred!</b>
+        desc:A shiny piece of seaweed. You have [magicSeaweed] [?(magicSeaweed=1)|piece|pieces] of magical seaweed.
+        icon:https://i.ibb.co/7KQxdyf/magicseaweed.png
+Upgrades
+    //reallyBigAquariums
+        *reinforcedGlass
+            name:Reinforced Glass
+            desc:Crack-resistant glass reduces breakages and allows Really Big Aquariums to produce twice as many Freds per second.
+            icon:https://i.ibb.co/x1GmLLJ/reinforcedglass.png
+            passive:multiply yield of reallyBigAquarium by 2
+            on earn:hide this
+            cost:100 fred
+        *evenBiggerAquariums
+            name:Even Bigger Really Big Aquariums
+            desc:Increased size of Really Big Aquariums allows them to produce twice as many Freds per second.
+            icon:https://i.ibb.co/qkq218J/biggeraquarium.png
+            passive:multiply yield of reallyBigAquarium by 2
+            on earn:hide this
+            cost:500 fred
+        *treasureChests
+            name:Those Little Plastic Treasure Chests That You Find In Lots Of Aquariums
+            desc:Treasure chests make Really Big Aquariums more habitable and allows them to produce twice as many Freds per second.
+            icon:https://i.ibb.co/JrcyWK7/treasurechest.png
+            passive:multiply yield of reallyBigAquarium by 2
+            on earn:hide this
+            cost:2500 fred
+        *pineapples
+            name:Pineapples
+            desc:Hollow pineapple houses provide Freds with a home and allow Really Big Aquariums to produce twice as many Freds per second.
+            icon:https://i.ibb.co/4RH6bWd/pineapple.png
+            passive:multiply yield of reallyBigAquarium by 2
+            on earn:hide this
+            cost:10000 fred
+        *aquariumCloner
+            name:Cloner to Clone Your Really Big Aquariums
+            desc:Utilizes Fred Cloner 3000™️s to clone Really Big Aquariums, causing Fred Cloner 3000™️s to produce twice as many Freds per second and increasing Really Big Aquariums Freds per second by 0.1 for every Fred Cloner 3000™️.
+            passive:
+                increase yield of reallyBigAquarium by 0.1*fredCloner3000
+                multiply yield of fredCloner3000 by 2
+            end
+            on earn:hide this
+            cost:250000 fred
+    //artists
+        *sturdierBrushes
+            name:Sturdier Brushes
+            desc:Carbon fiber handles make sturdier brushes, allowing Artists to paint twice as many Freds per second.
+            passive:multiply yield of artist by 2
+            on earn:hide this
+            cost:600 fred
+Items
+Achievements
+    *theBigFriendlyWhale
+        name:The Big Friendly Whale
+        desc:Click Fred.
+        icon:
+        no text
+        req:1 fredButton:clicks
+    *theBigHungryWhale
+        name:The Big Hungry Whale
+        desc:Feed Fred.
+        icon:
+        no text
+        req:1 fredFeedCounter
+    *palettePalate
+        name:Palette Palate
+        desc:Feed Fred a palette.
+    *fredAteMyHomework
+        name:Fred ate my homework!
+        desc:Feed Fred your homework.
+Shinies
