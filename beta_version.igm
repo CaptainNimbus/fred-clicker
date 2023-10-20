@@ -41,7 +41,10 @@ Layout
             names:hide
             *achievs
                 header:<b>Achievements</b>
-                contains:Achievements
+                contains:Achievements, skins
+                *skins
+                    header:<b>Skins</b>
+                    contains:Items
 
 
 Includes
@@ -292,6 +295,7 @@ Upgrades
             name:James
             desc:James
             on earn:show jamesButton
+            cost:100000000 fred
     //reallyBigAquariums
         *reinforcedGlass
             name:Reinforced Glass
