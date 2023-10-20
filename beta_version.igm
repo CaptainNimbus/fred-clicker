@@ -1,8 +1,7 @@
 Let's make a game!
     name:Fred - BETA VERSION
     by:CaptainNimbus
-    desc:Click Fred.
-    version:1.1
+    desc:Click Fred. Go to <i><b>https://orteil.dashnet.org/igm/?g=zFfKahJE</b></i> for the main version.
 
 
 Settings
@@ -50,13 +49,22 @@ Buttons
 	*fredButton
   		name:Fred
   		on click:yield 1 fred
-        on click:if (chance(0.05%)) yield 1 peanutButter
-        on click:if (chance(0.05%)) yield 1 donut
-        on click:if (chance(0.05%)) yield 1 goldfish
+        on click:
+            if (chance(0.05%)) yield 1 peanutButter
+            if (chance(0.05%)) yield 1 donut
+            if (chance(0.05%)) yield 1 goldfish
+        end
 	    icon:https://i.ibb.co/vL1wnQ9/bigfred.png
         no text
         class:bigButton
         no tooltip
+    *jamesButton
+        name:James
+        icon:
+        no text
+        class:bigButton
+        no tooltip
+        hidden
 
 
 Resources
@@ -85,7 +93,7 @@ Resources
         passive:if (fishTimer!=0) multiply yield of :Buildings by 1.1
         hidden when 0
     *magicSeaweedTimer
-        name:Magical Seaweed
+        text:Fred has been fed magical seaweed! Freds per second doubled for [(magicSeaweedTimer/60)] [?(magicSeaweedTimer/60=1)|minute|minutes] and [(magicSeaweedTimer%60)] [?(magicSeaweedTimer%60=1)|second|seconds].
         hidden when 0
 Buildings
     *reallyBigAquarium|reallyBigAquariums
@@ -94,7 +102,7 @@ Buildings
         icon:https://i.ibb.co/f2Y1dnj/aquarium.png
         on tick:
             yield 0.8 freds
-            if (chance(0.05%)) yield 1 fish
+            if (chance(0.2%)) yield 1 fish
         end
         cost:25 freds
     *artist|artists
@@ -103,7 +111,7 @@ Buildings
         icon:https://i.ibb.co/k08BcwK/artist.png
         on tick:
             yield 3 freds
-            if (chance(0.04%)) yield 1 palette
+            if (chance(0.2%)) yield 1 palette
         end
         cost:150 freds
     *scubaDiver|scubaDivers
@@ -265,7 +273,26 @@ Buildings
         text:Magical Seaweed: [magicSeaweed]</><b>Click to feed to Fred!</b>
         desc:A shiny piece of seaweed. You have [magicSeaweed] [?(magicSeaweed=1)|piece|pieces] of magical seaweed.
         icon:https://i.ibb.co/7KQxdyf/magicseaweed.png
+        no buy
+        on click:
+            if (magicSeaweed>0 and magicSeaweed>0)
+                toast Fred is still recovering. You cannot feed him until he is well again.
+            else if (magicSeaweed>0 and magicSeaweed=0)
+                magicSeaweedTimer is 90
+                yield 1 fredFeedCounter
+                toast Fred has been fed a piece of magical seaweed.
+                lose 1 magicSeaweed
+            else if (homework=0)
+                toast You do not have any magical seaweed to feed Fred.
+            end
+        end
 Upgrades
+    //james
+        *james
+            name:James
+            desc:James
+            on earn:show jamesButton
+            cost:100000000 fred
     //reallyBigAquariums
         *reinforcedGlass
             name:Reinforced Glass
@@ -298,6 +325,7 @@ Upgrades
         *aquariumCloner
             name:Cloner to Clone Your Really Big Aquariums
             desc:Utilizes Fred Cloner 3000™️s to clone Really Big Aquariums, causing Fred Cloner 3000™️s to produce twice as many Freds per second and increasing Really Big Aquariums Freds per second by 0.1 for every Fred Cloner 3000™️.
+            icon:https://i.ibb.co/Y03bN06/aquariumcloner.png
             passive:
                 increase yield of reallyBigAquarium by 0.1*fredCloner3000
                 multiply yield of fredCloner3000 by 2
@@ -308,9 +336,17 @@ Upgrades
         *sturdierBrushes
             name:Sturdier Brushes
             desc:Carbon fiber handles make sturdier brushes, allowing Artists to paint twice as many Freds per second.
+            icon:https://i.ibb.co/1nR3KCc/carbonbrushes.png
             passive:multiply yield of artist by 2
             on earn:hide this
             cost:600 fred
+        *variedPalettes
+            name:Varied Palettes
+            desc:A wider range of colors allows Artists to paint Freds more accurately, causing them to paint twice as many Freds per second.
+            icon:https://i.ibb.co/xYCQ78M/variedpalettes.png
+            passive:multiply yield of artist by 2
+            on earn:hide this
+            cost:2000 fred
 Items
 Achievements
     *theBigFriendlyWhale
@@ -328,7 +364,11 @@ Achievements
     *palettePalate
         name:Palette Palate
         desc:Feed Fred a palette.
+        icon:https://i.ibb.co/k08BcwK/artist.png
+        no text
     *fredAteMyHomework
         name:Fred ate my homework!
         desc:Feed Fred your homework.
+        icon:https://i.ibb.co/4ZVSkHD/homework.png
+        no text
 Shinies
