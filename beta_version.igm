@@ -366,7 +366,7 @@ Buildings
             if (chickenDrumstick>0 and sickTimer>0)
                 toast Fred is still recovering. You cannot feed him until he is well again.
             else if (chickenDrumstick>0 and sickTimer=0)
-                drumstickTimer is 
+                drumstickTimer is 10
                 yield 1 fredFeedCounter
                 toast Fred has been fed a chicken drumstick.
                 lose 1 chickenDrumstick
