@@ -49,25 +49,77 @@ Layout
 
 Includes
 Buttons
-	*fredButton
-  		name:Fred
-  		on click:yield 1 fred
-        on click:
-            if (chance(0.05%)) yield 1 peanutButter
-            if (chance(0.05%)) yield 1 donut
-            if (chance(0.05%)) yield 1 goldfish
-        end
-	    icon:https://i.ibb.co/vL1wnQ9/bigfred.png
+    *defaultButton
+        icon:https://i.ibb.co/vL1wnQ9/bigfred.png
         no text
         class:bigButton
         no tooltip
-    *jamesButton
+    *SfredSchool
+        icon:
+        no text
+        class:bigButton
+        no tooltip
+        hidden
+    *SredFred
+        icon:
+        no text
+        class:bigButton
+        no tooltip
+        hidden
+    *SorangeFred
+        icon:
+        no text
+        class:bigButton
+        no tooltip
+        hidden
+    *SyellowFred
+        icon:
+        no text
+        class:bigButton
+        no tooltip
+        hidden
+    *SgreenFred
+        icon:
+        no text
+        class:bigButton
+        no tooltip
+        hidden
+    *SblueFred
+        icon:
+        no text
+        class:bigButton
+        no tooltip
+        hidden
+    *SpurpleFred
+        icon:
+        no text
+        class:bigButton
+        no tooltip
+        hidden
+    *SpinkFred
+        icon:
+        no text
+        class:bigButton
+        no tooltip
+        hidden
+    *Sjames
         name:James
         icon:
         no text
         class:bigButton
         no tooltip
         hidden
+	*button
+  		name:Fred
+  		on click:
+            yield 1 fred
+            if (chance(0.05%)) yield 1 peanutButter
+            if (chance(0.05%)) yield 1 donut
+            if (chance(0.05%)) yield 1 goldfish
+        end
+        no text
+        class:bigButton
+        no tooltip
 
 
 Resources
@@ -97,6 +149,12 @@ Resources
         hidden when 0
     *magicSeaweedTimer
         text:Fred has been fed magical seaweed! Freds per second doubled for [(magicSeaweedTimer/60)] [?(magicSeaweedTimer/60=1)|minute|minutes] and [(magicSeaweedTimer%60)] [?(magicSeaweedTimer%60=1)|second|seconds].
+        on tick:lose 1 this
+        passive:if (magicSeaweedTimer!=0) multiply yield of :Buildings by 2
+        hidden when 0
+    *drumstickTimer
+        text:Fred has been fed a chicken drumstick!
+        on tick:lose 1 this
         hidden when 0
 Buildings
     *reallyBigAquarium|reallyBigAquariums
@@ -159,6 +217,15 @@ Buildings
             if (chance(0.1%)) yield 1 magicSeaweed
         end
         cost:9000000 freds
+    *chickFrEd
+        name:Chick-Fr-Ed
+        desc:Sells chicken drumstick "Freds" to people for a profit.</>Earns 50000 Freds per second.
+        icon:
+        on tick:
+            yield 50000 freds
+            if (chance(0.1%)) yield 1 chickenDrumstick
+        end
+        cost:150000000 freds
     *foodHeading
         text:<b>Food:</b>
         no tooltip
@@ -278,24 +345,98 @@ Buildings
         icon:https://i.ibb.co/7KQxdyf/magicseaweed.png
         no buy
         on click:
-            if (magicSeaweed>0 and magicSeaweed>0)
+            if (magicSeaweed>0 and sickTimer>0)
                 toast Fred is still recovering. You cannot feed him until he is well again.
-            else if (magicSeaweed>0 and magicSeaweed=0)
+            else if (magicSeaweed>0 and sickTimer=0)
                 magicSeaweedTimer is 90
                 yield 1 fredFeedCounter
                 toast Fred has been fed a piece of magical seaweed.
                 lose 1 magicSeaweed
-            else if (homework=0)
+            else if (magicSeaweed=0)
                 toast You do not have any magical seaweed to feed Fred.
             end
         end
+    *chickenDrumstick
+        name:Chicken Drumstick
+        text:Chicken Drumstick: [chickenDrumstick]</><b>Click to feed to Fred!</b>
+        desc:A "finger clickin' good" chicken drumstick. You have [chickenDrumstick] chicken [?(chickenDrumstick=1)|drumstick|drumsticks].
+        icon:
+        no buy
+        on click:
+            if (chickenDrumstick>0 and sickTimer>0)
+                toast Fred is still recovering. You cannot feed him until he is well again.
+            else if (chickenDrumstick>0 and sickTimer=0)
+                drumstickTimer is 
+                yield 1 fredFeedCounter
+                toast Fred has been fed a chicken drumstick.
+                lose 1 chickenDrumstick
+            else if (chickenDrumstick=0)
+                toast You do not have any chicken drumsticks to feed Fred.
+            end
+        end
 Upgrades
-    //james
+    //skins
+        *fredSchool
+            icon:
+            no text
+            class:bigButton
+            no tooltip
+            hidden
+        *redFred
+            icon:https://i.ibb.co/vdCwsv3/bigredfred.png
+            no text
+            class:bigButton
+            no tooltip
+            hidden
+        *orangeFred
+            icon:https://i.ibb.co/BjNMvT2/bigorangefred.png
+            no text
+            class:bigButton
+            no tooltip
+            hidden
+        *yellowFred
+            icon:https://i.ibb.co/QYLDVcd/bigyellowfred.png
+            no text
+            class:bigButton
+            no tooltip
+            hidden
+        *greenFred
+            icon:https://i.ibb.co/r5qC0Yz/biggreenfred.png
+            no text
+            class:bigButton
+            no tooltip
+            hidden
+        *blueFred
+            icon:https://i.ibb.co/1QVVn1Q/bigbluefred.png
+            no text
+            class:bigButton
+            no tooltip
+            hidden
+        *purpleFred
+            icon:https://i.ibb.co/rG3tcVx/bigpurplefred.png
+            no text
+            class:bigButton
+            no tooltip
+            hidden
+        *pinkFred
+            icon:https://i.ibb.co/qx56m25/bigpinkfred.png
+            no text
+            class:bigButton
+            no tooltip
+            hidden
+        *beretFred
+            icon:https://i.ibb.co/9hvh9TJ/ouiouifred.png
+            no text
+            class:bigButton
+            no tooltip
+            hidden
         *james
             name:James
-            desc:James
-            on earn:show jamesButton
-            cost:100000000 fred
+            icon:
+            no text
+            class:bigButton
+            no tooltip
+            hidden
     //reallyBigAquariums
         *reinforcedGlass
             name:Reinforced Glass
@@ -327,7 +468,7 @@ Upgrades
             cost:10000 fred
         *aquariumCloner
             name:Cloner to Clone Your Really Big Aquariums
-            desc:Utilizes Fred Cloner 3000™️s to clone Really Big Aquariums, causing Fred Cloner 3000™️s to produce twice as many Freds per second and increasing Really Big Aquariums Freds per second by 0.1 for every Fred Cloner 3000™️.
+            desc:Utilizes Fred Cloner 3000™️s to clone Really Big Aquariums, causing Fred Cloner 3000™️s to produce twice as many Freds per second and increasing Really Big Aquariums' Freds per second by 0.1 for every Fred Cloner 3000™️.
             icon:https://i.ibb.co/Y03bN06/aquariumcloner.png
             passive:
                 increase yield of reallyBigAquarium by 0.1*fredCloner3000
@@ -345,23 +486,71 @@ Upgrades
             cost:600 fred
         *variedPalettes
             name:Varied Palettes
-            desc:A wider range of colors allows Artists to paint Freds more accurately, causing them to paint twice as many Freds per second.
+            desc:A wider range of colors allows Artists to paint Freds more accurately, allowing them to paint twice as many Freds per second.
             icon:https://i.ibb.co/xYCQ78M/variedpalettes.png
             passive:multiply yield of artist by 2
             on earn:hide this
             cost:2000 fred
+        *waterColors
+            name:Water Colors
+            desc:Artists use colors from Fred's natural habitat, allowing them to paint twice as many Freds per second.
+            icon:https://i.ibb.co/yg1dSmc/watercolors.png
+            passive:multiply yield of artist by 2
+            on earn:hide this
+            cost:20000 fred
+        *tempuraPaints
+            name:Tempura Paints
+            desc:Artists use breaded fish as paint, allowing them to paint twice as many Freds per second.
+            icon:
+            passive:multiply yield of artist by 2
+            on earn:hide this
+            cost:120000 fred
+        *artistCloner
+            name:Cloner to Clone Your Artists
+            desc:Utilizes Fred Cloner 3000™️s to clone Artists, causing Fred Cloner 3000™️s to produce twice as many Freds per second and increasing Artists' Freds per second by 0.1 for every Fred Cloner 3000™️.
+            icon:https://i.ibb.co/Y03bN06/aquariumcloner.png
+            passive:
+                increase yield of artist by 0.1*fredCloner3000
+                multiply yield of fredCloner3000 by 2
+            end
+            on earn:hide this
+            cost:1200000 fred
+    //scuba divers
+
 Items
 Achievements
+    //misc
     *theBigFriendlyWhale
         name:The Big Friendly Whale
         desc:Click Fred.
-        icon:
+        icon:https://i.ibb.co/x3Vw9JR/fred.png
         no text
-        req:1 fredButton:clicks
+        req:1 button:clicks
+    //rba
+    *reefFunded
+        name:Reef-funded
+        desc:Sell a Really Big Aquarium.
+        icon:
+        req:1 fred
+    *seemsFishy
+        name:Seems fishy...
+        desc:Own 1 Really Big Aquarium.
+        icon:
+        req:1 reallyBigAquarium
+    *50rba
+        desc:Own 50 Really Big Aquariums.
+        icon:
+        req:50 reallyBigAquariums
+    *fintastic
+        name:Fintastic!
+        desc:Own 100 Really Big Aquariums.
+        icon:
+        req:100 reallyBigAquariums
+    //food
     *theBigHungryWhale
         name:The Big Hungry Whale
         desc:Feed Fred.
-        icon:
+        icon:https://i.ibb.co/x3Vw9JR/fred.png
         no text
         req:1 fredFeedCounter
     *palettePalate
