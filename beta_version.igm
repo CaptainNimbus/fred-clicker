@@ -529,7 +529,14 @@ Upgrades
             icon:https://i.ibb.co/K78d0FT/oxygen.png
             passive:multiply yield of scubaDiver by 2
             on earn:hide this
-            cost:25000 fred
+            cost:50000 fred
+        *propellers
+            name:Propellers
+            desc:Scuba divers are now equipped with propellers, enabling them to move faster and find twice as many Freds per second.
+            icon:https://i.ibb.co/ykG5pXr/propellors.png
+            passive:multiply yield of scubaDiver by 2
+            on earn:hide this
+            cost:1500000 fred
 
 Items
 Achievements
