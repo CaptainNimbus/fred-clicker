@@ -5,7 +5,7 @@ Let's make a game!
 
 
 Settings
-    building cost increase:115%
+    building cost increase:125%
     building cost refund:75%
     background:https://i.ibb.co/jHTRL0B/image.png
 
@@ -379,62 +379,52 @@ Upgrades
         *fredSchool
             icon:
             no text
-            class:bigButton
             no tooltip
             hidden
         *redFred
             icon:https://i.ibb.co/vdCwsv3/bigredfred.png
             no text
-            class:bigButton
             no tooltip
             hidden
         *orangeFred
             icon:https://i.ibb.co/BjNMvT2/bigorangefred.png
             no text
-            class:bigButton
             no tooltip
             hidden
         *yellowFred
             icon:https://i.ibb.co/QYLDVcd/bigyellowfred.png
             no text
-            class:bigButton
             no tooltip
             hidden
         *greenFred
             icon:https://i.ibb.co/r5qC0Yz/biggreenfred.png
             no text
-            class:bigButton
             no tooltip
             hidden
         *blueFred
             icon:https://i.ibb.co/1QVVn1Q/bigbluefred.png
             no text
-            class:bigButton
             no tooltip
             hidden
         *purpleFred
             icon:https://i.ibb.co/rG3tcVx/bigpurplefred.png
             no text
-            class:bigButton
             no tooltip
             hidden
         *pinkFred
             icon:https://i.ibb.co/qx56m25/bigpinkfred.png
             no text
-            class:bigButton
             no tooltip
             hidden
         *beretFred
             icon:https://i.ibb.co/9hvh9TJ/ouiouifred.png
             no text
-            class:bigButton
             no tooltip
             hidden
         *james
             name:James
             icon:
             no text
-            class:bigButton
             no tooltip
             hidden
     //reallyBigAquariums
