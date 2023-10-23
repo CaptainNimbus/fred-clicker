@@ -159,7 +159,7 @@ Resources
 Buildings
     *reallyBigAquarium|reallyBigAquariums
         name:Really Big Aquarium
-        desc:Provides a safe home for Freds to live.</>Produces 0.8 Freds per second.
+        desc:Provides a safe home for Freds to live.</>Produces 0.8 Freds per second.</></><q>""</q>
         icon:https://i.ibb.co/f2Y1dnj/aquarium.png
         on tick:
             yield 0.8 freds
@@ -168,7 +168,7 @@ Buildings
         cost:25 freds
     *artist|artists
         name:Artist
-        desc:Hires an artist to draw Freds.</>Draws 3 Freds per second.
+        desc:Hires an artist to draw Freds.</>Draws 3 Freds per second.</></><q>""</q>
         icon:https://i.ibb.co/k08BcwK/artist.png
         on tick:
             yield 3 freds
@@ -177,31 +177,31 @@ Buildings
         cost:150 freds
     *scubaDiver|scubaDivers
         name:Scuba Diver
-        desc:Hires a scuba diver to explore the depths of the ocean for Freds.</>Discovers 24 Freds per second.
+        desc:Hires a scuba diver to explore the depths of the ocean for Freds.</>Discovers 24 Freds per second.</></><q>""</q>
         icon:https://i.ibb.co/SsvSLwV/scuba.png
         on tick:yield 24 freds
         cost:2100 freds
     *photographer|photographers
         name:Photographer
-        desc:Takes pictures of Freds in the wild.</>Photographs 75 Freds per second.
+        desc:Takes pictures of Freds in the wild.</>Photographs 75 Freds per second.</></><q>""</q>
         icon:https://i.ibb.co/g7DZzGr/camera.png
         on tick:yield 75 freds
         cost:10000 freds
     *fredCloner3000|fredCloner3000s
         name:Fred Cloner 3000™
-        desc:Clones Freds from other Freds.</>Clones 350 Freds per second.
+        desc:Clones Freds from other Freds.</>Clones 350 Freds per second.</></><q>""</q>
         icon:https://i.ibb.co/VCqmSKs/fredcloner3000.png
         on tick:yield 350 freds
         cost:200000 freds
     *deadFredReviver
         name:Dead Fred Reviver
-        desc:Revives dead Freds using DNA from living ones.</>Revives 1000 Freds per second.
+        desc:Revives dead Freds using DNA from living ones.</>Revives 1000 Freds per second.</></><q>""</q>
         icon:https://i.ibb.co/3vCLZgp/fredreviver.png
         on tick:yield 1000 freds
         cost:850000 freds
     *whalepedia|whalepedias
         name:Whalepedia
-        desc:Converts visits to Wikipedia into Freds.</>Converts 2951 Freds per second (as that is the average visits per second on Wikipedia).
+        desc:Converts visits to Wikipedia into Freds.</>Converts 2951 Freds per second (as that is the average visits per second on Wikipedia).</></><q>""</q>
         icon:https://i.ibb.co/5YSt62J/whalepedia.png
         on tick:
             yield 2951 freds
@@ -210,7 +210,7 @@ Buildings
         cost:2500000 freds
     *fredWizard
         name:Fred Wizard
-        desc:Summons Freds from the depths of the void.</>Summons 10000 Freds per second.
+        desc:Summons Freds from the depths of the void.</>Summons 10000 Freds per second.</></><q>"Accio Freds!"</q>
         icon:https://i.ibb.co/sW23pqR/fredwizard.png
         on tick:
             yield 10000 freds
@@ -219,7 +219,7 @@ Buildings
         cost:9000000 freds
     *chickFrEd
         name:Chick-Fr-Ed
-        desc:Sells chicken drumstick "Freds" to people for a profit.</>Earns 50000 Freds per second.
+        desc:Sells chicken drumstick "Freds" to people for a profit.</>Earns 50000 Freds per second.</></><q>"Finger-clickin' good!"</q>
         icon:
         on tick:
             yield 50000 freds
@@ -359,7 +359,7 @@ Buildings
     *chickenDrumstick
         name:Chicken Drumstick
         text:Chicken Drumstick: [chickenDrumstick]</><b>Click to feed to Fred!</b>
-        desc:A "finger clickin' good" chicken drumstick. You have [chickenDrumstick] chicken [?(chickenDrumstick=1)|drumstick|drumsticks].
+        desc:A chicken drumstick from Chick-Fr-Ed. You have [chickenDrumstick] chicken [?(chickenDrumstick=1)|drumstick|drumsticks].
         icon:
         no buy
         on click:
@@ -508,7 +508,7 @@ Upgrades
         *artistCloner
             name:Cloner to Clone Your Artists
             desc:Utilizes Fred Cloner 3000™️s to clone Artists, causing Fred Cloner 3000™️s to produce twice as many Freds per second and increasing Artists' Freds per second by 0.1 for every Fred Cloner 3000™️.
-            icon:https://i.ibb.co/Y03bN06/aquariumcloner.png
+            icon:
             passive:
                 increase yield of artist by 0.1*fredCloner3000
                 multiply yield of fredCloner3000 by 2
@@ -516,16 +516,36 @@ Upgrades
             on earn:hide this
             cost:1200000 fred
     //scuba divers
+        *radarDetectors
+            name:Radar Detectors
+            desc:Scuba divers are now armed with radar detectors to find Freds more efficiently, causing them to find twice as many Freds per second.</></><q>"Beep...Beeep...Beeeeep...Beeeeeeeeeeep...Beeeeeeeeeeeeeeeeeeeeeeeeep."</q>
+            icon:https://i.ibb.co/TvtXtH5/radar.png
+            passive:multiply yield of scubaDiver by 2
+            on earn:hide this
+            cost:8000 fred
+        *oxygenTanks
+            name:Oxygen Tanks
+            desc:Scuba divers have oxygen tanks strapped to their backs, allowing them to take longer expeditions and causing them to find twice as many Freds per second.
+            icon:https://i.ibb.co/K78d0FT/oxygen.png
+            passive:multiply yield of scubaDiver by 2
+            on earn:hide this
+            cost:25000 fred
 
 Items
 Achievements
     //misc
+    //clicking
     *theBigFriendlyWhale
         name:The Big Friendly Whale
         desc:Click Fred.
         icon:https://i.ibb.co/x3Vw9JR/fred.png
         no text
         req:1 button:clicks
+    *justKeepClicking
+        name:Just Keep Clicking
+        desc:Click Fred 1,000 times.
+        icon:
+        req:1000 button:clicks
     //rba
     *reefFunded
         name:Reef-funded
@@ -537,7 +557,8 @@ Achievements
         desc:Own 1 Really Big Aquarium.
         icon:
         req:1 reallyBigAquarium
-    *50rba
+    *justKeepSwimming
+        name:Just Keep Swimming
         desc:Own 50 Really Big Aquariums.
         icon:
         req:50 reallyBigAquariums
@@ -546,6 +567,19 @@ Achievements
         desc:Own 100 Really Big Aquariums.
         icon:
         req:100 reallyBigAquariums
+    //artist
+    //scuba diver
+    *underTheSea
+        name:Under The Sea
+        desc:Own 1 scuba diver.
+        icon:
+        req:1 scubaDiver
+    *downWhereItsWetter
+        name:Down Where It's Wetter
+        desc:Own 50 scuba divers.
+        icon:
+        req:50 scubaDivers
+    
     //food
     *theBigHungryWhale
         name:The Big Hungry Whale
