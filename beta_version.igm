@@ -443,7 +443,7 @@ Upgrades
             on earn:hide this
             cost:500 fred
         *treasureChests
-            name:Those Little Plastic Treasure Chests That You Find In Lots Of Aquariums
+            name:Those Little Plastic Treasure Chests
             desc:Treasure chests make Really Big Aquariums more habitable and allows them to produce twice as many Freds per second.
             icon:https://i.ibb.co/JrcyWK7/treasurechest.png
             passive:multiply yield of reallyBigAquarium by 2
